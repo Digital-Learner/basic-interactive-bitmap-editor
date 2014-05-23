@@ -29,4 +29,8 @@ describe 'Image' do
     bitmap.set_pixel_colour(pixel, colour)
     expect(bitmap.get_pixel_colour(pixel)).to eq("C")
   end
+
+  it "returns a pixels colour" do
+    expect(Image.new(@cols,@rows).set_pixel_colour([3,4], "J")).to eq("J")
+  end
 end
