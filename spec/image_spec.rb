@@ -22,4 +22,11 @@ describe 'Image' do
       end
     end
   end
+
+  it "can set a pixels colour" do
+    colour, pixel = "C", [1,1]
+    bitmap = Image.new(@cols,@rows)
+    bitmap.set_pixel_colour(pixel, colour)
+    expect(bitmap.get_pixel_colour(pixel)).to eq("C")
+  end
 end
