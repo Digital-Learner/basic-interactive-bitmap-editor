@@ -12,4 +12,14 @@ describe 'Image' do
     expect(bitmap.cols).to eql(5)
     expect(bitmap.rows).to eql(6)
   end
+
+  it "has initial colour of 'O'" do
+    bitmap = Image.new(@cols, @rows)
+    (1..@cols).map do |col|
+      (1..@rows).map do |row|
+        colour = bitmap.get_pixel_colour([col,row])
+        expect("O").to eq(colour)
+      end
+    end
+  end
 end
