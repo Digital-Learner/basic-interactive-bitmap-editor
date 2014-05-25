@@ -3,7 +3,7 @@ class Image
 
   def initialize(cols, rows)
     @cols, @rows = cols, rows
-    @pixels = (1..@cols).map{ (1..@rows).map{ "O"} } #zero based array
+    @pixels = (1..@rows).map{ (1..@cols).map{ "O"} } #zero based array
   end
 
   def get_pixel_colour(pixel)
@@ -14,5 +14,9 @@ class Image
 
   def set_pixel_colour(pixel, colour)
     @pixels[pixel[0] - 1, pixel[1] - 1] = colour
+  end
+
+  def show
+    @pixels.map{|row| row.join(' ') }.join("\n") + "\n"
   end
 end

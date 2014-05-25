@@ -14,9 +14,9 @@ describe 'Image' do
   end
 
   it "has initial colour of 'O'" do
-    (1..@cols).map do |col|
-      (1..@rows).map do |row|
-        colour = @bitmap.get_pixel_colour([col,row])
+    (1..@rows).map do |row|
+      (1..@cols).map do |col|
+        colour = @bitmap.get_pixel_colour([row, col])
         expect("O").to eq(colour)
       end
     end
@@ -29,6 +29,11 @@ describe 'Image' do
   end
 
   it "returns a pixels colour" do
-    expect(@bitmap.set_pixel_colour([3,4], "J")).to eq("J")
+    expect(@bitmap.get_pixel_colour([3,4])).to eq("O")
+  end
+
+  it "prints itself as a string" do
+    bitmap = "O O O O O\nO O O O O\nO O O O O\nO O O O O\nO O O O O\nO O O O O\n"
+    expect(@bitmap.show).to eq(bitmap)
   end
 end
