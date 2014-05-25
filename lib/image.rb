@@ -23,4 +23,8 @@ class Image
   def colour_vertical_segment(col, from_row, to_row, colour)
     (from_row..to_row).each{|row| set_pixel_colour([row, col], colour)}
   end
+
+  def colour_horizontal_segment(from_col, to_col, row, colour)
+    (from_col..to_col).each{|col| set_pixel_colour([row, col], colour)}
+  end
 end

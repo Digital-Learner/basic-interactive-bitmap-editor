@@ -43,4 +43,11 @@ describe 'Image' do
 
     expect(@bitmap.show).to eq bitmap
   end
+
+  it "draws a horizontal segment of colour 'Z' in row Y between columns X1 & X2 (inclusive)" do
+    bitmap = "O O O O O\nO O Z Z O\nO O O O O\nO O O O O\nO O O O O\nO O O O O\n"
+    @bitmap.colour_horizontal_segment(3,4,2,"Z")
+
+    expect(@bitmap.show).to eq bitmap
+  end
 end
