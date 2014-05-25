@@ -13,10 +13,14 @@ class Image
   end
 
   def set_pixel_colour(pixel, colour)
-    @pixels[pixel[0] - 1, pixel[1] - 1] = colour
+    @pixels[pixel[0] - 1][pixel[1] - 1] = colour
   end
 
   def show
     @pixels.map{|row| row.join(' ') }.join("\n") + "\n"
+  end
+
+  def colour_vertical_segment(col, from_row, to_row, colour)
+    (from_row..to_row).each{|row| set_pixel_colour([row, col], colour)}
   end
 end

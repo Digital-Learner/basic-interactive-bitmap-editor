@@ -23,7 +23,7 @@ describe 'Image' do
   end
 
   it "can set a pixels colour" do
-    colour, pixel = "C", [1,1]
+    colour, pixel = "C", [2,3]
     @bitmap.set_pixel_colour(pixel, colour)
     expect(@bitmap.get_pixel_colour(pixel)).to eq("C")
   end
@@ -35,5 +35,12 @@ describe 'Image' do
   it "prints itself as a string" do
     bitmap = "O O O O O\nO O O O O\nO O O O O\nO O O O O\nO O O O O\nO O O O O\n"
     expect(@bitmap.show).to eq(bitmap)
+  end
+
+  it "draws a vertical segment of colour 'A' in column X between rows Y1 & Y2 (inclusive)" do
+    bitmap = "O O O O O\nO O O O O\nO W O O O\nO W O O O\nO O O O O\nO O O O O\n"
+    @bitmap.colour_vertical_segment(2,3,4,"W")
+
+    expect(@bitmap.show).to eq bitmap
   end
 end
