@@ -50,4 +50,9 @@ describe 'Image' do
 
     expect(@bitmap.show).to eq bitmap
   end
+
+  it "locates adjacent pixels" do
+    neighbours = [[2,3], [3,3], [4,3], [2,4], [4,4], [2,5], [3,5], [4,5] ]
+    expect(@bitmap.get_neighbours(3,4)).to eq neighbours
+  end
 end

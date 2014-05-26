@@ -27,4 +27,9 @@ class Image
   def colour_horizontal_segment(from_col, to_col, row, colour)
     (from_col..to_col).each{|col| set_pixel_colour([row, col], colour)}
   end
+
+  def get_neighbours(col,row)
+    perimeter = (row -1 .. row + 1).map{|row| (col - 1 .. col + 1).map {|col| [col,row]} }
+    perimeter.flatten(1) - [[col,row]]
+  end
 end
