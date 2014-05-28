@@ -31,5 +31,13 @@ class Image
   def get_neighbours(col,row)
     perimeter = (row -1 .. row + 1).map{|row| (col - 1 .. col + 1).map {|col| [col,row]} }
     perimeter.flatten(1) - [[col,row]]
+  def get_neighbours(col, row)
+    rows = (row - 1 .. row + 1).select{|row| (1..@rows).include?(row)}
+    cols = (col - 1 .. col + 1).select{|col| (1..@cols).include?(col)}
+    neighbours = []
+    neighbours = rows.map{|row| cols.map {|col| [col,row]} }.flatten(1) - [[col,row]]
+    puts "\nmy neighbours(#{col},#{row}): #{neighbours}"
+    return neighbours
+  end
   end
 end

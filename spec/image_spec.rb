@@ -52,7 +52,14 @@ describe 'Image' do
   end
 
   it "locates adjacent pixels" do
-    neighbours = [[2,3], [3,3], [4,3], [2,4], [4,4], [2,5], [3,5], [4,5] ]
+    neighbours = [ [2,3], [3,3], [4,3], [2,4], [4,4], [2,5], [3,5], [4,5] ]
     expect(@bitmap.get_neighbours(3,4)).to eq neighbours
+
+    neighbours = [ [4,5],[5,5],[4,6] ]
+    expect(@bitmap.get_neighbours(5,6)).to eq neighbours
+
+    neighbours = [ [2,2],[3,2],[4,2],[2,3],[4,3],[2,4],[3,4],[4,4] ]
+    expect(@bitmap.get_neighbours(3,3)).to eql neighbours
+  end
   end
 end
