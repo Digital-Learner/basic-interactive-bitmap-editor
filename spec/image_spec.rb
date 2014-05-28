@@ -14,22 +14,24 @@ describe 'Image' do
   end
 
   it "has initial colour of 'O'" do
+    puts "bitmap: #{@bitmap.inspect}"
     (1..@rows).map do |row|
       (1..@cols).map do |col|
-        colour = @bitmap.get_pixel_colour([row, col])
+        # puts "col => #{col}, row => #{row} [get_pixel_colour(#{col}, #{row})]"
+        colour = @bitmap.get_pixel_colour(col,row) # x,y
         expect("O").to eq(colour)
       end
     end
   end
 
   it "can set a pixels colour" do
-    colour, pixel = "C", [2,3]
-    @bitmap.set_pixel_colour(pixel, colour)
-    expect(@bitmap.get_pixel_colour(pixel)).to eq("C")
+    colour = "C"
+    @bitmap.set_pixel_colour(2,3, colour)
+    expect(@bitmap.get_pixel_colour(2,3)).to eq("C")
   end
 
   it "returns a pixels colour" do
-    expect(@bitmap.get_pixel_colour([3,4])).to eq("O")
+    expect(@bitmap.get_pixel_colour(3,4)).to eq("O")
   end
 
   it "prints itself as a string" do

@@ -1,19 +1,20 @@
 class Image
-  attr_reader :cols, :rows
+  attr_reader :cols, :rows, :pixels
 
   def initialize(cols, rows)
     @cols, @rows = cols, rows
-    @pixels = (1..@rows).map{ (1..@cols).map{ "O"} } #zero based array
+    @pixels = (1..@rows).map{ (1..@cols).map{"O"} } #zero based array of arrays (@pixels[row || y][col || x])
   end
 
-  def get_pixel_colour(pixel)
+  def get_pixel_colour(x, y)
     # subtract one from each pixel co-ordinates
     # upper-left pixel has co-ordinates 1,1
-    @pixels[pixel[0] - 1][pixel[1] -1 ]
+    # @pixels[pixel[0] - 1][pixel[1] -1 ]
+    @pixels[y - 1][x - 1]
   end
 
-  def set_pixel_colour(pixel, colour)
-    @pixels[pixel[0] - 1][pixel[1] - 1] = colour
+  def set_pixel_colour(x, y, colour)
+    @pixels[y - 1][x - 1] = colour
   end
 
   def show
@@ -21,11 +22,13 @@ class Image
   end
 
   def colour_vertical_segment(col, from_row, to_row, colour)
-    (from_row..to_row).each{|row| set_pixel_colour([row, col], colour)}
+    (from_row..to_row).each{|row| set_pixel_colour(col, row, colour)}
   end
 
   def colour_horizontal_segment(from_col, to_col, row, colour)
-    (from_col..to_col).each{|col| set_pixel_colour([row, col], colour)}
+    (from_col..to_col).each{|col| set_pixel_colour(col, row, colour)}
+  end
+
   def fill(x, y, colour)
     current_pixel_colour = get_pixel_colour(x, y)
     flood_fill(x, y, current_pixel_colour, colour)
