@@ -26,7 +26,7 @@ class BitmapCLI
       when 'V'
         vertical_strip(*args)
       when 'H'
-        puts 'Horizontal Line'
+        horizontal_strip(*args)
       when 'F'
         puts 'Request to Fill area'
       when 'S'
@@ -65,6 +65,16 @@ class BitmapCLI
         puts "Image not initialized"
       rescue ArgumentError => a
         puts "Incorrect number of arguments for command, requires x-position, y-start-position, y-end-position & colour"
+      end
+    end
+
+    def horizontal_strip(*args)
+      begin
+        @image.colour_horizontal_segment(*args)
+      rescue NoMethodError => e
+        puts "Image not initialized"
+      rescue ArgumentError => a
+        puts "Incorrect number of arguments for command, requires x-start-position, x-end-position, y-position & colour"
       end
     end
 end
