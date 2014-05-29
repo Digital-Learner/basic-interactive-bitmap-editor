@@ -14,14 +14,13 @@ class BitmapCLI
     end
 
     def parse(input)
-      # args = input.split(' ').map{|arg| (arg == "0" || arg.to_i != 0) ? arg.to_i : arg}
       command, *args = input.split(' ').map{|arg| (arg == "0" || arg.to_i != 0) ? arg.to_i : arg}
       puts "command => #{command} : args => #{args}"
       case command.upcase
       when 'I'
         initialise_new_image(*args)
       when 'C'
-        puts 'Request to clear'
+        clear_image
       when 'L'
         puts 'L'
       when 'V'
@@ -39,5 +38,9 @@ class BitmapCLI
 
     def initialise_new_image(*args)
       @image = Image.new(*args)
+    end
+
+    def clear_image
+      @image.clear
     end
 end
