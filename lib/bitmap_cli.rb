@@ -26,6 +26,7 @@ class BitmapCLI
         colour_pixel(*args)
       when 'V'
         puts 'Vertical Line'
+        vertical_strip(*args)
       when 'H'
         puts 'Horizontal Line'
       when 'F'
@@ -56,6 +57,16 @@ class BitmapCLI
         puts "Image not initialized"
       rescue ArgumentError => a
         puts "Incorrect number of arguments for command, requires x-position, y-position & colour"
+      end
+    end
+
+    def vertical_strip(*args)
+      begin
+        @image.colour_vertical_segment(*args)
+      rescue NoMethodError => e
+        puts "Image not initialized"
+      rescue ArgumentError => a
+        puts "Incorrect number of arguments for command, requires x-position, y-start-position, y-end-position & colour"
       end
     end
 end
