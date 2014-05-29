@@ -3,6 +3,10 @@ class Image
 
   def initialize(cols, rows)
     @cols, @rows = cols, rows
+    clear
+  end
+
+  def clear
     @pixels = (1..@rows).map{ (1..@cols).map{"O"} } #zero based array of arrays (@pixels[row || y][col || x])
   end
 

@@ -86,4 +86,19 @@ describe 'Image' do
     @bitmap.fill(3,3,"J")
     expect(@bitmap.to_s).to eq bitmap
   end
+
+  it "clears image to be all 'O''s" do
+    @bitmap.set_pixel_colour(2,3,"A")
+    @bitmap.colour_vertical_segment(2,3,4,"W")
+    @bitmap.colour_horizontal_segment(3,4,2,"Z")
+    @bitmap.fill(3,3,"J")
+    @bitmap.clear
+
+    (1..@rows).map do |row|
+      (1..@cols).map do |col|
+        colour = @bitmap.get_pixel_colour(col,row) # x,y
+        expect("O").to eq(colour)
+      end
+    end
+  end
 end
