@@ -52,3 +52,7 @@ In the example below, > represents input
  JWJJJ
  JJJJJ
  JJJJJ
+
+ ### Run from terminal
+
+ `ruby bitmap_editor`
