@@ -23,6 +23,7 @@ class BitmapCLI
         clear_image
       when 'L'
         puts 'L'
+        colour_pixel(*args)
       when 'V'
         puts 'Vertical Line'
       when 'H'
@@ -45,6 +46,16 @@ class BitmapCLI
         @image.clear# unless @image.nil?
       rescue NoMethodError => e
         puts "Image not initialized"
+      end
+    end
+
+    def colour_pixel(*args)
+      begin
+        @image.set_pixel_colour(*args)
+      rescue NoMethodError => e
+        puts "Image not initialized"
+      rescue ArgumentError => a
+        puts "Incorrect number of arguments for command, requires x-position, y-position & colour"
       end
     end
 end
