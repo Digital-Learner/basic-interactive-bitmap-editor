@@ -17,8 +17,12 @@ class Image
     @pixels[y - 1][x - 1] = colour
   end
 
-  def show
+  def to_s
     @pixels.map{|row| row.join(' ') }.join("\n") + "\n"
+  end
+
+  def show
+    print self
   end
 
   def colour_vertical_segment(col, from_row, to_row, colour)

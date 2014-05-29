@@ -14,7 +14,7 @@ describe 'Image' do
   end
 
   it "has initial colour of 'O'" do
-    puts "bitmap: #{@bitmap.inspect}"
+    # puts "bitmap: #{@bitmap.inspect}"
     (1..@rows).map do |row|
       (1..@cols).map do |col|
         # puts "col => #{col}, row => #{row} [get_pixel_colour(#{col}, #{row})]"
@@ -36,21 +36,21 @@ describe 'Image' do
 
   it "prints itself as a string" do
     bitmap = "O O O O O\nO O O O O\nO O O O O\nO O O O O\nO O O O O\nO O O O O\n"
-    expect(@bitmap.show).to eq(bitmap)
+    expect(@bitmap.to_s).to eq(bitmap)
   end
 
   it "draws a vertical segment of colour 'A' in column X between rows Y1 & Y2 (inclusive)" do
     bitmap = "O O O O O\nO O O O O\nO W O O O\nO W O O O\nO O O O O\nO O O O O\n"
     @bitmap.colour_vertical_segment(2,3,4,"W")
 
-    expect(@bitmap.show).to eq bitmap
+    expect(@bitmap.to_s).to eq bitmap
   end
 
   it "draws a horizontal segment of colour 'Z' in row Y between columns X1 & X2 (inclusive)" do
     bitmap = "O O O O O\nO O Z Z O\nO O O O O\nO O O O O\nO O O O O\nO O O O O\n"
     @bitmap.colour_horizontal_segment(3,4,2,"Z")
 
-    expect(@bitmap.show).to eq bitmap
+    expect(@bitmap.to_s).to eq bitmap
   end
 
   # it "locates adjacent pixels" do
@@ -77,13 +77,13 @@ describe 'Image' do
     bitmap = "J J J J J\nJ J J J J\nJ A J J J\nJ J J J J\nJ J J J J\nJ J J J J\n"
     @bitmap.set_pixel_colour(2,3,"A")
     @bitmap.fill(3,3,"J")
-    expect(@bitmap.show).to eq bitmap
+    expect(@bitmap.to_s).to eq bitmap
 
     bitmap = "J J J J J\nJ J Z Z J\nJ W J J J\nJ W J J J\nJ J J J J\nJ J J J J\n"
     @bitmap.set_pixel_colour(2,3,"A")
     @bitmap.colour_vertical_segment(2,3,4,"W")
     @bitmap.colour_horizontal_segment(3,4,2,"Z")
     @bitmap.fill(3,3,"J")
-    expect(@bitmap.show).to eq bitmap
+    expect(@bitmap.to_s).to eq bitmap
   end
 end
