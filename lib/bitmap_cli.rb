@@ -22,17 +22,15 @@ class BitmapCLI
       when 'C'
         clear_image
       when 'L'
-        puts 'L'
         colour_pixel(*args)
       when 'V'
-        puts 'Vertical Line'
         vertical_strip(*args)
       when 'H'
         puts 'Horizontal Line'
       when 'F'
         puts 'Request to Fill area'
       when 'S'
-        puts "Request to show"
+        @image.show
       when 'X'
         return exit 0
       end
