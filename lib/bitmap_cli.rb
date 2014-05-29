@@ -41,7 +41,10 @@ class BitmapCLI
     end
 
     def clear_image
-      puts "@image: #{@image} / nil? #{@image.nil?}"
-      @image.clear unless @image.nil?
+      begin
+        @image.clear# unless @image.nil?
+      rescue NoMethodError => e
+        puts "Image not initialized"
+      end
     end
 end
