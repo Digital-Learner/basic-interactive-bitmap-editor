@@ -41,6 +41,7 @@ class BitmapCLI
     end
 
     def clear_image
-      @image.clear
+      puts "@image: #{@image} / nil? #{@image.nil?}"
+      @image.clear unless @image.nil?
     end
 end
