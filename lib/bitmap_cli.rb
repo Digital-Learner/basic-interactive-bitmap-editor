@@ -15,7 +15,6 @@ class BitmapCLI
 
     def parse(input)
       command, *args = input.split(' ').map{|arg| (arg == "0" || arg.to_i != 0) ? arg.to_i : arg}
-      puts "command => #{command} : args => #{args}"
       case command.upcase
       when 'I'
         initialise_new_image(*args)
@@ -28,7 +27,7 @@ class BitmapCLI
       when 'H'
         horizontal_strip(*args)
       when 'F'
-        puts 'Request to Fill area'
+        colour_area(*args)
       when 'S'
         @image.show
       when 'X'
@@ -75,6 +74,16 @@ class BitmapCLI
         puts "Image not initialized"
       rescue ArgumentError => a
         puts "Incorrect number of arguments for command, requires x-start-position, x-end-position, y-position & colour"
+      end
+    end
+
+    def colour_area(*args)
+      begin
+        @image.fill(*args)
+      rescue NoMethodError => e
+        puts "Image not initialized"
+      rescue ArgumentError => a
+        puts "Incorrect number of arguments for command, requires x-position, y-position & colour"
       end
     end
 end
